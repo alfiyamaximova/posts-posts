@@ -1,0 +1,8 @@
+.postsListBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1vw;
+    max-height: calc(100% - 120px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
