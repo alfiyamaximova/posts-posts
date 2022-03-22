@@ -26,9 +26,9 @@ function Header() {
                     Написать новый постинг
                 </Button>
                 <Meta
-                    avatar={<Avatar src={currentUser.avatar} />}
-                    title={currentUser.name}
-                    description={currentUser.email}
+                    avatar={<Avatar src={currentUser?.avatar} />}
+                    title={currentUser?.name}
+                    description={currentUser?.email}
                 />
             </div>
         </header>
