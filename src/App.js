@@ -1,16 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import css from './App.module.css'
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import PostsList from './components/PostsList/PostsList';
 import { AppContext } from './context';
 import { getAllPosts } from './service/post-service';
+import { getLoggedInUser } from './service/user-service';
+import MainPage from './page/MainPage/MainPage';
 
 function App() {
     const pageSize = 6;
 
+    const [loggedInUser, setLoggedInUser] = useState(null);
     const [selectedPageNum, setSelectedPageNum] = useState(1);
     const [allPosts, setAllPosts] = useState([]);
+
+    useEffect(() => {
+        getLoggedInUser().then(user => setLoggedInUser(user))
+    }, []);
 
     useEffect(() => {
         getAllPosts().then(posts => setAllPosts(posts))
@@ -25,11 +28,12 @@ function App() {
 
     return (
         <AppContext.Provider value={{ setSelectedPageNum }}>
-            <div className={css.appPage}>
-                <Header/>
-                <PostsList postsToDisplay={postsToDisplay}/>
-                <Footer totalPostsCount={allPosts.length} pageSize={pageSize}/>
-            </div>
+            <MainPage
+                loggedInUser={loggedInUser}
+                postsToDisplay={postsToDisplay}
+                totalPostsCount={allPosts.length}
+                pageSize={pageSize}
+            />
         </AppContext.Provider>
     );
 }

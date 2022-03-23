@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import css from './Footer.module.css'
 import { Pagination } from 'antd';
 import { AppContext } from '../../context';
+import CopyrightInfo from '../CopyrightInfo/CopyrightInfo';
 
-function Footer({totalPostsCount, pageSize}) {
+function PaginationFooter({totalPostsCount, pageSize}) {
     const {setSelectedPageNum} = useContext(AppContext);
 
     function onSelectedPageChanged(page, pageSize) {
@@ -18,9 +19,9 @@ function Footer({totalPostsCount, pageSize}) {
                 total={totalPostsCount}
                 onChange={onSelectedPageChanged}
             />
-            <span>(c) 2022 Альфия Максимова</span>
+            <CopyrightInfo/>
         </footer>
     )
 }
 
-export default Footer;
+export default PaginationFooter;

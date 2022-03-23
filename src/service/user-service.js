@@ -2,7 +2,7 @@ import { getSecurityToken } from '../security/auth';
 
 const baseUrl = 'https://api.react-learning.ru/users';
 
-export async function getCurrentUser() {
+export async function getLoggedInUser() {
     const token = getSecurityToken();
 
     const response = await fetch(`${baseUrl}/me`, {
