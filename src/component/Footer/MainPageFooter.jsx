@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
+
 import css from './Footer.module.css'
+
 import { Pagination } from 'antd';
+
 import { AppContext } from '../../context';
 import CopyrightInfo from '../CopyrightInfo/CopyrightInfo';
 
-function PaginationFooter({totalPostsCount, pageSize}) {
-    const {setSelectedPageNum} = useContext(AppContext);
+function MainPageFooter({totalPostsCount, pageSize}) {
+    const {selectedPageNum, setSelectedPageNum} = useContext(AppContext);
 
     function onSelectedPageChanged(page, pageSize) {
         setSelectedPageNum(page);
@@ -14,7 +17,7 @@ function PaginationFooter({totalPostsCount, pageSize}) {
     return (
         <footer className={css.footerBlock}>
             <Pagination
-                defaultCurrent={1}
+                current={selectedPageNum}
                 defaultPageSize={pageSize}
                 total={totalPostsCount}
                 onChange={onSelectedPageChanged}
@@ -24,4 +27,4 @@ function PaginationFooter({totalPostsCount, pageSize}) {
     )
 }
 
-export default PaginationFooter;
+export default MainPageFooter;

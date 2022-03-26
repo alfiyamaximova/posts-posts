@@ -15,3 +15,17 @@ export async function getAllPosts() {
 
     return response?.json();
 }
+
+export async function getPostById(id) {
+    const token = getSecurityToken();
+
+    const response = await fetch(`${baseUrl}/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    });
+
+    return response?.json();
+}

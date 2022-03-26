@@ -1,0 +1,13 @@
+.postContentBlock {
+    display: flex;
+    flex-direction: column;
+    margin: 0 18vw;
+    max-height: calc(100% - 140px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.headerAndEditButtonSection {
+    display: flex;
+    column-gap: 1vw;
+}

@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import { AppContext } from './context';
 import { getAllPosts } from './service/post-service';
 import { getLoggedInUser } from './service/user-service';
-import MainPage from './page/MainPage/MainPage';
+import PostPageView from './page/PostPageView';
+import MainPage from './page/MainPage';
 
 function App() {
     const pageSize = 6;
@@ -27,13 +30,25 @@ function App() {
     }, [selectedPageNum, allPosts]);
 
     return (
-        <AppContext.Provider value={{ setSelectedPageNum }}>
-            <MainPage
-                loggedInUser={loggedInUser}
-                postsToDisplay={postsToDisplay}
-                totalPostsCount={allPosts.length}
-                pageSize={pageSize}
-            />
+        <AppContext.Provider value={{
+            selectedPageNum,
+            setSelectedPageNum
+        }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={
+                        <MainPage
+                            loggedInUser={loggedInUser}
+                            postsToDisplay={postsToDisplay}
+                            totalPostsCount={allPosts.length}
+                            pageSize={pageSize}
+                        />
+                    }/>
+                    <Route path="/post/:postId" element={
+                        <PostPageView loggedInUser={loggedInUser}/>
+                    }/>
+                </Routes>
+            </BrowserRouter>
         </AppContext.Provider>
     );
 }

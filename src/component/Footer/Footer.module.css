@@ -5,3 +5,7 @@
     margin-top:auto;
     min-height: 60px;
 }
+
+.postPageFooterBlock {
+    justify-content: flex-end;
+}

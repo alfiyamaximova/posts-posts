@@ -1,13 +1,16 @@
 import React from 'react';
-import { Button } from 'antd';
+
 import css from './Header.module.css'
+
+import { Button } from 'antd';
+
 import UserInfo from '../UserInfo/UserInfo';
 
 function onNewPostingClick(event) {
     console.log('Есть контакт');
 }
 
-function AddNewPostingButtonHeader({loggedInUser}) {
+function MainPageHeader({loggedInUser}) {
     return (
         <header className={css.headerBlock}>
             <h1>Блог о разном</h1>
@@ -23,4 +26,4 @@ function AddNewPostingButtonHeader({loggedInUser}) {
     )
 }
 
-export default AddNewPostingButtonHeader;
+export default MainPageHeader;
