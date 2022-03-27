@@ -6,6 +6,7 @@ import { getAllPosts } from './service/post-service';
 import { getLoggedInUser } from './service/user-service';
 import PostPageView from './page/PostPageView';
 import MainPage from './page/MainPage';
+import PostPageEdit from './page/PostPageEdit';
 
 function App() {
     const pageSize = 6;
@@ -13,14 +14,29 @@ function App() {
     const [loggedInUser, setLoggedInUser] = useState(null);
     const [selectedPageNum, setSelectedPageNum] = useState(1);
     const [allPosts, setAllPosts] = useState([]);
+    const [postChanged, setPostChanged] = useState(null);
+    const [isAllPostsLoadingInProgress, setIsAllPostsLoadingInProgress] = useState(false);
+
+    function calcLastPageNum(postsQuantity) {
+        return Math.max(1, Math.ceil(postsQuantity / pageSize));
+    }
 
     useEffect(() => {
         getLoggedInUser().then(user => setLoggedInUser(user))
     }, []);
 
     useEffect(() => {
-        getAllPosts().then(posts => setAllPosts(posts))
-    }, [])
+        setIsAllPostsLoadingInProgress(true);
+
+        getAllPosts().then(posts => {
+            setAllPosts(posts);
+            if (postChanged?.action === 'CREATED') {
+                setSelectedPageNum(calcLastPageNum(posts.length))
+            }
+
+            setIsAllPostsLoadingInProgress(false);
+        })
+    }, [postChanged])
 
     const postsToDisplay = useMemo(() => {
         const start = (selectedPageNum - 1) * pageSize;
@@ -32,7 +48,10 @@ function App() {
     return (
         <AppContext.Provider value={{
             selectedPageNum,
-            setSelectedPageNum
+            setSelectedPageNum,
+
+            postChanged,
+            setPostChanged,
         }}>
             <BrowserRouter>
                 <Routes>
@@ -42,10 +61,14 @@ function App() {
                             postsToDisplay={postsToDisplay}
                             totalPostsCount={allPosts.length}
                             pageSize={pageSize}
+                            isAllPostsLoadingInProgress={isAllPostsLoadingInProgress}
                         />
                     }/>
                     <Route path="/post/:postId" element={
                         <PostPageView loggedInUser={loggedInUser}/>
+                    }/>
+                    <Route path="/post/:postId/edit" element={
+                        <PostPageEdit loggedInUser={loggedInUser}/>
                     }/>
                 </Routes>
             </BrowserRouter>

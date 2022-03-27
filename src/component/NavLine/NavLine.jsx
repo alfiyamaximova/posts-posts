@@ -1,10 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import css from './NavLine.module.css'
 
 import { Breadcrumb } from 'antd';
 
-function NavLine({title, postId}) {
+function NavLine({currentLocationTitle}) {
+
+    const location = useLocation();
+
     return (
         <div className={css.navLineBlock}>
             <Breadcrumb separator=">">
@@ -12,7 +15,7 @@ function NavLine({title, postId}) {
                     <NavLink to="/">Все постинги</NavLink>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                    <NavLink to={`/post/${postId}`}>Выбранный постинг: {title}</NavLink>
+                    <NavLink to={location?.pathname}>{currentLocationTitle}</NavLink>
                 </Breadcrumb.Item>
             </Breadcrumb>
         </div>

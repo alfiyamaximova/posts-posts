@@ -6,7 +6,7 @@ export async function getLoggedInUser() {
     const token = getSecurityToken();
 
     const response = await fetch(`${baseUrl}/me`, {
-        method: "GET",
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': token

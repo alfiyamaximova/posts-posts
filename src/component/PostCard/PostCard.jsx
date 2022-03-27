@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import css from './PostCard.module.css'
 
-import { Card, Tag, Timeline } from 'antd';
+import { Card, Tag, Timeline, Tooltip } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import Avatar from 'antd/es/avatar/avatar';
 
@@ -13,9 +13,11 @@ function PostCard({post}) {
     return (
         <Card
             title={
-                <NavLink to={`post/${post._id}`}>
-                    {post.title}
-                </NavLink>
+                <Tooltip placement='bottom' title='Кликните, чтобы перейти к чтению постинга'>
+                    <NavLink to={`post/${post._id}`}>
+                        {post.title}
+                    </NavLink>
+                </Tooltip>
             }
             headStyle={{border: '1px solid lightgray', borderRadius: '5px 5px 0 0'}}
             bodyStyle={{border: '1px solid lightgray', borderRadius: '0 0 5px 5px'}}
