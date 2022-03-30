@@ -12,7 +12,7 @@ function MainPage({loggedInUser, postsToDisplay, totalPostsCount, pageSize, isAl
         <div className={css.commonPage}>
             <MainPageHeader loggedInUser={loggedInUser}/>
             <Spinner spinning={isAllPostsLoadingInProgress}>
-                <PostsList postsToDisplay={postsToDisplay}/>
+                <PostsList postsToDisplay={postsToDisplay} loggedInUser={loggedInUser}/>
             </Spinner>
             <MainPageFooter totalPostsCount={totalPostsCount} pageSize={pageSize}/>
         </div>
