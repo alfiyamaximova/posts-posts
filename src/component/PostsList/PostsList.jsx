@@ -5,7 +5,7 @@ import css from './PostsList.module.css'
 import PostCard from '../PostCard/PostCard';
 import { getAllUsers } from '../../service/user-service';
 
-function PostsList({postsToDisplay, loggedInUser}) {
+function PostsList({postsToDisplay}) {
 
     const [allUsers, setAllUsers] = useState([]);
 
@@ -17,7 +17,7 @@ function PostsList({postsToDisplay, loggedInUser}) {
         <main className={css.postsListBlock}>
             {
                 postsToDisplay.map(post =>
-                    <PostCard post={post} allUsers={allUsers} loggedInUser={loggedInUser} key={post._id}/>
+                    <PostCard post={post} allUsers={allUsers} key={post._id}/>
                 )
             }
         </main>

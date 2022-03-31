@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import css from './Header.module.css'
@@ -6,9 +6,11 @@ import css from './Header.module.css'
 import { Button } from 'antd';
 
 import UserInfo from '../UserInfo/UserInfo';
+import { AppContext } from '../../context';
 
-function MainPageHeader({loggedInUser}) {
+function MainPageHeader() {
 
+    const {loggedInUser} = useContext(AppContext);
     const navigate = useNavigate();
 
     function onNewClick() {

@@ -9,7 +9,7 @@ import PostContentView from '../component/PostContent/PostContentView';
 import { getPostById } from '../service/post-service';
 import Spinner from '../component/Spinner/Spinner';
 
-function PostPageView({loggedInUser}) {
+function PostPageView() {
 
     const {postId} = useParams();
     const [post, setPost] = useState(null);
@@ -22,7 +22,7 @@ function PostPageView({loggedInUser}) {
 
     return (
         <div className={css.commonPage}>
-            <PostPageHeader loggedInUser={loggedInUser}/>
+            <PostPageHeader/>
             <Spinner spinning={!post}>
                 <PostContentView post={post}/>
             </Spinner>

@@ -3,6 +3,7 @@ import Avatar from 'antd/es/avatar/avatar';
 import React from 'react';
 
 function UserInfo({user}) {
+
     return (
         <Meta
             avatar={<Avatar src={user?.avatar}/>}

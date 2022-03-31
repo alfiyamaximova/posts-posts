@@ -47,6 +47,8 @@ function App() {
 
     return (
         <AppContext.Provider value={{
+            loggedInUser,
+
             selectedPageNum,
             setSelectedPageNum,
 
@@ -57,7 +59,6 @@ function App() {
                 <Routes>
                     <Route path="/" element={
                         <MainPage
-                            loggedInUser={loggedInUser}
                             postsToDisplay={postsToDisplay}
                             totalPostsCount={allPosts.length}
                             pageSize={pageSize}
@@ -65,10 +66,10 @@ function App() {
                         />
                     }/>
                     <Route path="/post/:postId" element={
-                        <PostPageView loggedInUser={loggedInUser}/>
+                        <PostPageView/>
                     }/>
                     <Route path="/post/:postId/edit" element={
-                        <PostPageEdit loggedInUser={loggedInUser}/>
+                        <PostPageEdit/>
                     }/>
                 </Routes>
             </BrowserRouter>

@@ -11,7 +11,7 @@ import { areEqualIgnoringCase } from '../utils/string-utils';
 import Spinner from '../component/Spinner/Spinner';
 
 
-function PostPageEdit({loggedInUser}) {
+function PostPageEdit() {
 
     const {postId} = useParams();
     const [post, setPost] = useState(null);
@@ -27,7 +27,7 @@ function PostPageEdit({loggedInUser}) {
 
     return (
         <div className={css.commonPage}>
-            <PostPageHeader loggedInUser={loggedInUser}/>
+            <PostPageHeader/>
             <Spinner spinning={!isNew && !post}>
                 <PostContentEdit post={post}/>
             </Spinner>

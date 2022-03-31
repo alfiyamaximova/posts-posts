@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import css from './PostCard.module.css'
@@ -11,9 +11,11 @@ import Avatar from 'antd/es/avatar/avatar';
 import { putLike, removeLike } from '../../service/like-service';
 import { formatDateTime } from '../../utils/date-utils';
 import { isNotEmptyArray } from '../../utils/array-utils';
+import { AppContext } from '../../context';
 
-function PostCard({post, allUsers, loggedInUser}) {
+function PostCard({post, allUsers}) {
 
+    const {loggedInUser} = useContext(AppContext);
     const [postToDisplay, setPostToDisplay] = useState(null);
     const [likers, setLikers] = useState([]);
     const [likedByLoggedInUser, setLikedByLoggedInUser] = useState(false);
