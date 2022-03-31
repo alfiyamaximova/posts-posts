@@ -32,11 +32,18 @@ function App() {
             setAllPosts(posts);
             if (postChanged?.action === 'CREATED') {
                 setSelectedPageNum(calcLastPageNum(posts.length))
+            } else if (postChanged?.action === 'DELETED') {
+                const lastPageNum = calcLastPageNum(posts.length);
+                if (selectedPageNum > lastPageNum) {
+                    setSelectedPageNum(lastPageNum);
+                }
             }
 
             setIsAllPostsLoadingInProgress(false);
         })
-    }, [postChanged])
+    /* не нужно включать selectedPageNum в зависимости, чтобы не перезагружать список постов при переходе на другую страницу,
+    поэтому подавляем проверку полноты массива зависимостей */
+    }, [postChanged]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const postsToDisplay = useMemo(() => {
         const start = (selectedPageNum - 1) * pageSize;

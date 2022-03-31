@@ -44,3 +44,17 @@ export async function createPost(newPost) {
 
     return response?.json();
 }
+
+export async function deletePost(postId) {
+    const token = getSecurityToken();
+
+    const response = await fetch(`${baseUrl}/${postId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    });
+
+    return response?.json();
+}

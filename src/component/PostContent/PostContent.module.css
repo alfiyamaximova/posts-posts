@@ -7,12 +7,24 @@
     overflow-y: auto;
 }
 
-.headerAndEditButtonSection {
+.headerAndButtonsSection {
     display: flex;
+    justify-content: space-between;
     column-gap: 1vw;
 }
 
 .buttonsSection {
     display: flex;
     justify-content: flex-end;
+}
+
+.questionIconAndText {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.questionIcon {
+    font-size: 24px;
+    color: darkred;
 }
