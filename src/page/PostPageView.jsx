@@ -5,7 +5,7 @@ import css from './page.module.css';
 
 import PostPageHeader from '../component/Header/PostPageHeader';
 import PostPageFooter from '../component/Footer/PostPageFooter';
-import PostContentView from '../component/PostContent/PostContentView';
+import PostContentView from '../component/Content/PostContentView';
 import { getPostById } from '../service/post-service';
 import Spinner from '../component/Spinner/Spinner';
 

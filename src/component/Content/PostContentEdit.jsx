@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import css from './PostContent.module.css'
+import css from './Content.module.css'
 
 import Input from 'antd/es/input/Input';
 import TextArea from 'antd/es/input/TextArea';

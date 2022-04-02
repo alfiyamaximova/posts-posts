@@ -7,6 +7,7 @@ import { getLoggedInUser } from './service/user-service';
 import PostPageView from './page/PostPageView';
 import MainPage from './page/MainPage';
 import PostPageEdit from './page/PostPageEdit';
+import WrongUrlPage from './page/WrongUrlPage';
 
 function App() {
     const pageSize = 6;
@@ -77,6 +78,9 @@ function App() {
                     }/>
                     <Route path="/post/:postId/edit" element={
                         <PostPageEdit/>
+                    }/>
+                    <Route path="*" element={
+                        <WrongUrlPage/>
                     }/>
                 </Routes>
             </BrowserRouter>

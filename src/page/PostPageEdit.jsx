@@ -6,7 +6,7 @@ import css from './page.module.css';
 import PostPageHeader from '../component/Header/PostPageHeader';
 import PostPageFooter from '../component/Footer/PostPageFooter';
 import { getPostById } from '../service/post-service';
-import PostContentEdit from '../component/PostContent/PostContentEdit';
+import PostContentEdit from '../component/Content/PostContentEdit';
 import { areEqualIgnoringCase } from '../utils/string-utils';
 import Spinner from '../component/Spinner/Spinner';
 
