@@ -7,7 +7,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import Avatar from 'antd/es/avatar/avatar';
 import Meta from 'antd/es/card/Meta';
 import Modal from 'antd/es/modal/Modal';
-import { Button, Divider, Tag, Timeline } from 'antd';
+import { Button, Divider, message, Tag, Timeline } from 'antd';
 
 import { formatDateTime } from '../../utils/date-utils';
 import NavLine from '../NavLine/NavLine';
@@ -38,14 +38,18 @@ function PostContentView({post}) {
     function onDeleteConfirmedClick(event) {
         setIsConfirmationDialogVisible(false);
 
-        deletePost(post._id).then(response => {
-            setPostChanged({
-                postId: response._id,
-                action: 'DELETED'
-            });
+        deletePost(post._id)
+            .then(response => {
+                setPostChanged({
+                    postId: response._id,
+                    action: 'DELETED'
+                });
 
-            navigate('/');
-        });
+                navigate('/');
+            })
+            .catch(error =>
+                message.error(`Не удалось выполнить удаление постинга: ${error.message}`)
+            );
     }
 
     function onDeleteCanceledClick(event) {

@@ -1,31 +1,11 @@
-import { getSecurityToken } from '../security/auth';
+import { doRequest } from '../utils/service-utils';
 
 const baseUrl = 'https://api.react-learning.ru/users';
 
 export async function getLoggedInUser() {
-    const token = getSecurityToken();
-
-    const response = await fetch(`${baseUrl}/me`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        }
-    });
-
-    return response?.json();
+    return doRequest(`${baseUrl}/me`, 'GET');
 }
 
 export async function getAllUsers() {
-    const token = getSecurityToken();
-
-    const response = await fetch(baseUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        }
-    });
-
-    return response?.json();
+    return doRequest(baseUrl, 'GET');
 }

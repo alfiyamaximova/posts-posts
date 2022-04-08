@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import css from './PostCard.module.css'
 
 import { LikeFilled, LikeOutlined } from '@ant-design/icons';
-import { Card, Tag, Timeline, Tooltip } from 'antd';
+import { Card, message, Tag, Timeline, Tooltip } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import Avatar from 'antd/es/avatar/avatar';
 
@@ -47,9 +47,17 @@ function PostCard({post, allUsers}) {
 
     function changeLike(event) {
         if (likedByLoggedInUser) {
-            removeLike(postToDisplay._id).then(updatedPost => setPostToDisplay(updatedPost));
+            removeLike(postToDisplay._id)
+                .then(updatedPost => setPostToDisplay(updatedPost))
+                .catch(error =>
+                    message.error(`Не удалось снять отметку "нравится" с постинга: ${error.message}`)
+                );
         } else {
-            putLike(postToDisplay._id).then(updatedPost => setPostToDisplay(updatedPost));
+            putLike(postToDisplay._id)
+                .then(updatedPost => setPostToDisplay(updatedPost))
+                .catch(error =>
+                    message.error(`Не удалось поставить отметку "нравится" постингу: ${error.message}`)
+                );
         }
     }
 

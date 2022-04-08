@@ -1,60 +1,19 @@
-import { getSecurityToken } from '../security/auth';
+import { doRequest } from '../utils/service-utils';
 
 const baseUrl = 'https://api.react-learning.ru/posts';
 
 export async function getAllPosts() {
-    const token = getSecurityToken();
-
-    const response = await fetch(baseUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        }
-    });
-
-    return response?.json();
+    return doRequest(baseUrl, 'GET');
 }
 
 export async function getPostById(id) {
-    const token = getSecurityToken();
-
-    const response = await fetch(`${baseUrl}/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        }
-    });
-
-    return response?.json();
+    return doRequest(`${baseUrl}/${id}`, 'GET');
 }
 
 export async function createPost(newPost) {
-    const token = getSecurityToken();
-
-    const response = await fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify(newPost)
-    });
-
-    return response?.json();
+    return doRequest(baseUrl, 'POST', newPost);
 }
 
 export async function deletePost(postId) {
-    const token = getSecurityToken();
-
-    const response = await fetch(`${baseUrl}/${postId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        }
-    });
-
-    return response?.json();
+    return doRequest(`${baseUrl}/${postId}`, 'DELETE');
 }

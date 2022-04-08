@@ -5,7 +5,7 @@ import css from './Content.module.css'
 
 import Input from 'antd/es/input/Input';
 import TextArea from 'antd/es/input/TextArea';
-import { Button, Form, Tooltip } from 'antd';
+import { Button, Form, message, Tooltip } from 'antd';
 
 import NavLine from '../NavLine/NavLine';
 import { isNotBlank } from '../../utils/string-utils';
@@ -29,14 +29,18 @@ function PostContentEdit({post}) {
             tags: values.tags.split(' ').map(tag => tag.trim())
         }
 
-        createPost(newPost).then(response => {
-            setPostChanged({
-                postId: response._id,
-                action: 'CREATED'
-            });
+        createPost(newPost)
+            .then(response => {
+                setPostChanged({
+                    postId: response._id,
+                    action: 'CREATED'
+                });
 
-            navigate('/');
-        });
+                navigate('/');
+            })
+            .catch(error =>
+                message.error(`Не удалось сохранить новый постинг: ${error.message}`)
+            );
     }
 
     return (
@@ -64,7 +68,7 @@ function PostContentEdit({post}) {
                     name='tags'
                     label='Теги'
                     rules={[{ required: true, message: 'Пожалуйста, задайте хотябы один тег для постинга' }]}>
-                    <Input value={post?.tags.join(' ')}/>
+                    <Input value={post?.tags?.join(' ')}/>
                 </Form.Item>
 
                 <Form.Item>
