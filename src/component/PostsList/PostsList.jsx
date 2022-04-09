@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import css from './PostsList.module.css'
 
@@ -6,10 +6,12 @@ import { message } from 'antd';
 
 import PostCard from '../PostCard/PostCard';
 import { getAllUsers } from '../../service/user-service';
+import { AppContext } from '../../context';
 
-function PostsList({postsToDisplay}) {
+function PostsList() {
 
     const [allUsers, setAllUsers] = useState([]);
+    const {postsToDisplay} = useContext(AppContext);
 
     useEffect(() => {
         getAllUsers()

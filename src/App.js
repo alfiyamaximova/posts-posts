@@ -49,15 +49,13 @@ function App() {
                         setSelectedPageNum(lastPageNum);
                     }
                 }
-
-                setIsAllPostsLoadingInProgress(false);
             })
             .catch(error => {
                 setAllPosts([]);
-                setIsAllPostsLoadingInProgress(false);
 
                 message.error(`Не удалось загрузить список постингов: ${error.message}`);
-            });
+            })
+            .finally(() => setIsAllPostsLoadingInProgress(false));
     /* не нужно включать selectedPageNum в зависимости, чтобы не перезагружать список постов при переходе на другую страницу,
     поэтому подавляем проверку полноты массива зависимостей */
     }, [postChanged]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -73,6 +71,8 @@ function App() {
         <AppContext.Provider value={{
             loggedInUser,
 
+            postsToDisplay,
+
             selectedPageNum,
             setSelectedPageNum,
 
@@ -83,7 +83,6 @@ function App() {
                 <Routes>
                     <Route path="/" element={
                         <MainPage
-                            postsToDisplay={postsToDisplay}
                             totalPostsCount={allPosts.length}
                             pageSize={pageSize}
                             isAllPostsLoadingInProgress={isAllPostsLoadingInProgress}
