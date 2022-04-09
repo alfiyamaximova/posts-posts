@@ -10,10 +10,14 @@
 .headerAndButtonsSection {
     display: flex;
     justify-content: space-between;
-    column-gap: 1vw;
 }
 
-.buttonsSection {
+.editAndDeleteButtonsSection {
+    display: flex;
+    column-gap: 6px;
+}
+
+.saveButtonSection {
     display: flex;
     justify-content: flex-end;
 }

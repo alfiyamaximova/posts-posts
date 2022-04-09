@@ -14,6 +14,10 @@ export async function createPost(newPost) {
     return doRequest(baseUrl, 'POST', newPost);
 }
 
+export async function updatePost(updatedPost) {
+    return doRequest(`${baseUrl}/${updatedPost._id}`, 'PATCH', updatedPost);
+}
+
 export async function deletePost(postId) {
     return doRequest(`${baseUrl}/${postId}`, 'DELETE');
 }

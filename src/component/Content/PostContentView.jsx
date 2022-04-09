@@ -20,16 +20,13 @@ function PostContentView({post}) {
     const [isConfirmationDialogVisible, setIsConfirmationDialogVisible] = useState(false);
     const navigate = useNavigate();
 
-    const canDelete = useMemo(() => {
+    const canChangePost = useMemo(() => {
         return !!post && !!post.author && !!loggedInUser && post.author._id === loggedInUser._id;
     }, [post, loggedInUser]);
 
-    // Раскомментировать, если будет API для редактирования постинга
-    // const navigate = useNavigate();
-    //
-    // function onEditClick(event) {
-    //     navigate(`/post/${post?._id}/edit`);
-    // }
+    function onEditClick(event) {
+        navigate(`/post/${post?._id}/edit`);
+    }
 
     function onDeleteClick(event) {
         setIsConfirmationDialogVisible(true);
@@ -61,11 +58,10 @@ function PostContentView({post}) {
             <NavLine currentLocationTitle='Просмотр постинга'/>
             <div className={css.headerAndButtonsSection}>
                 <h2>{post?.title}</h2>
-                <div>
-                    {/*Раскомментировать, если будет API для редактирования постинга*/}
-                    {/*<Button onClick={onEditClick}>Редактировать</Button>*/}
-                    {canDelete && <Button onClick={onDeleteClick}>Удалить</Button>}
-                </div>
+                {canChangePost && <div className={css.editAndDeleteButtonsSection}>
+                    <Button onClick={onEditClick}>Редактировать</Button>
+                    <Button onClick={onDeleteClick}>Удалить</Button>
+                </div>}
             </div>
             <Meta
                 avatar={<Avatar src={post?.author?.avatar} />}
