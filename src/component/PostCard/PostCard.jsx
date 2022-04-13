@@ -75,8 +75,8 @@ function PostCard({post, allUsers}) {
             bordered={false}
             style={{width: '31.66vw'}}>
             <Meta
-                avatar={<Avatar src={postToDisplay?.author.avatar} />}
-                title={postToDisplay?.author.email}
+                avatar={<Avatar src={postToDisplay?.author?.avatar} />}
+                title={postToDisplay?.author?.email}
             />
             <div className={css.infoSection}>
                 {postToDisplay?.text}
